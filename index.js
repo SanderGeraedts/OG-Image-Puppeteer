@@ -32,11 +32,10 @@ app.post("/api/og-generator", async (req, res) => {
   const currentTime = new Date().getTime();
 
   if (currentTime - commitTime < 24 * 60 * 60 * 1000) {
-    getChangedPages(commit).then((pages) => {
+    getChangedPages(commit).then(async (pages) => {
       for (const page of pages) {
-        takeScreenshot(page).then((screenshot) =>
-          uploadScreenshot(screenshot, page)
-        );
+        const screenshot = await takeScreenshot(page);
+        const uploaded = await uploadScreenshot(screenshot, page);
       }
       res.status(200).json(pages);
     });
