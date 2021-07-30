@@ -79,6 +79,7 @@ async function takeScreenshot(url) {
       height: 627,
       isLandscape: true,
     },
+    args: ["--no-sandbox"],
   });
 
   const page = await browser.newPage();
