@@ -22,7 +22,7 @@ cloudinary.config({
   api_secret: CLOUDINARY_API_SECRET,
 });
 
-const port = 3000;
+const PORT = process.env.PORT || 5000;
 
 // Create an express route
 app.post("/api/og-generator", async (req, res) => {
@@ -119,5 +119,5 @@ function uploadScreenshot(screenshot, page) {
 }
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Listening on port ${port}`);
 });
